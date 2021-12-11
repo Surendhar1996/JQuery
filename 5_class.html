@@ -1,0 +1,20 @@
+<html>
+<head>
+<title>class Selector</title>
+</head>
+<body>
+<h1 >Surendhar</h1> 
+<i  class="a">Mechanical</i>
+<p class="a">learn JQuery</p>
+<script src="/assets/js/jquery-3.6.0.min.js"></script>
+<script>
+$("document").ready(function(){
+$(".a").click(function(){
+var a=$(this).html();
+console.log(a);
+});
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<html>
+<head>
+<title>attributes</title>
+</head>
+<body>
+<img src="/assets/images/9.jpg" width="350px" height="350px">;
+<script src="/assets/js/jquery-3.6.0.min.js"></script>
+<script>
+$("document").ready(function(){
+$("img").click(function(){
+     var a=$(this).attr("src");
+	 alert(a);
+	 $(this).attr("src","/assets/images/1.jpg");
+});
+});
+</script>
+
+</body>
+</html>

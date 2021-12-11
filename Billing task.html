@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Billing task</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+    <style></style>
+  </head>
+  <body>
+    <div class="container mt-3">
+      <h4>Market Billing</h4>
+      <!-- <span class="btn btn-dark add-row">Addrow</span> -->
+      <table class="table table-bordered table-danger col-12" id="myTable">
+        <thead>
+          <tr class="text-center">
+            <th scope="col">S.no</th>
+            <th scope="col">Item Name</th>
+            <th scope="col">Quantity(Kg)</th>
+            <th scope="col">Price</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody id="body">
+          <div class="change">
+            <tr id="rowid">
+              <td>1</td>
+              <td class="col-4">
+                <input
+                  type="text"
+                  class="item form-control"
+                  placeholder="Enter the item name"
+                  name="item"
+                  id="item1"
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  class="qty form-control"
+                  placeholder="Enter Product quantity in Kg"
+                  name="quantity"
+                  id="qnty1"
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  class="prc form-control"
+                  placeholder="Enter price in amount"
+                  id="price1"
+                  name="price"
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  class="total form-control"
+                  name="total"
+                  id="total1"
+                  placeholder="Enter total"
+                />
+              </td>
+            </tr>
+          </div>
+        </tbody>
+      </table>
+      <button class="btn btn-dark add-row" id="add">Addrow</button>
+      <button class="btn btn-dark delete-row float-right" id="delete">
+        Deleterow
+      </button>
+      <br />
+      <table
+        class="table table-bordered col-3 float-right table-danger"
+        style="margin-top: 25px">
+        <tr>
+          <th class="text-right">Sub Total</th>
+          <td>
+            <input type="number" class="subtot form-control" id="subtotal" />
+          </td>
+        </tr>
+        <tr>
+          <th class="text-right">Discount</th>
+          <td>
+            <input type="number" class="dis form-control" id="discount" />
+          </td>
+        </tr>
+        <tr>
+          <th class="text-right">GST Tax</th>
+          <td>
+            <div class="input-group">
+              <input
+                type="number"
+                class="taxes form-control"
+                id-="tax"
+                placeholder="2.5"
+                readonly
+              /><span class="input-group-text">%</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th class="text-right">GrandTotal</th>
+          <td>
+            <input
+              type="number"
+              class="grandtotal form-control"
+              id="grandtotal"
+            />
+          </td>
+        </tr>
+      </table>
+    </div>
+    <script src="/assets/js/jquery-3.6.0.min.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        var i = 1;
+        $(".add-row").click(function () {
+          // For add new
+          i += 1;
+          var newrow =
+            '<tr class="rows">' +
+            "<td>" +
+            "<td>" +
+            '<input class="item form-control placeholder="Enter the item name">' +
+            "<td>" +
+            '<input class="qty form-control"    id="qnty' +
+            i +
+            '" placeholder="Enter product quantity">' +    "<td >" +
+            '<input class="prc form-control" id="price' +  i +
+            '"  placeholder="Enter price in amount">' +
+            "<td>" +
+            '<input class="total form-control" id="total' +
+            i +
+            '" placeholder="Enter total" >' +
+            "</td>" +
+            "</td>" +
+            "</td>" +
+            "</td>" +
+            "</td>" +
+            "</tr>";
+            tableBody = $("#myTable #body");
+            tableBody.append(newrow);
+            console.log(i);
+            $("body").keyup(".qty, .prc,.subtot", function () {
+            var qty = $("#qnty" + i).val();
+            var Price = $("#price" + i).val();
+            var total = qty * Price;
+            console.log(qty);
+            $("#total" + i).val(total);
+            subtotal = 0;
+            $(".total").each(function () {
+            subtotal += parseInt($(this).val());
+            });
+            $(".subtot").val(subtotal.toFixed(2));
+            var dis = $("#discount").val();
+            var discount = (total * $("#discount").val()) / 100;
+            $("#discount").val(discount.toFixed(2));
+            var gst = (total / 100) * 2.5;
+            $("#grandtotal").val((subtotal - discount + gst).toFixed(2));
+          });
+          //For serial number
+          var index = 1;
+          $("#myTable #body tr").each(function () {
+            $(this)
+              .find("td:nth-child(1)")
+              .html(index++);
+          });
+        });
+        //For delete rows
+         $(document).on("click", ".delete-row", function () {
+          if ($("#body tr").length != 1) {
+            $(" #myTable #body tr:last-child").remove();
+           } else {
+            alert("now table is empty");
+          }
+          total();
+        }); 
+         $("body").keyup(".qty, .prc,.subtot", function () {
+          var qty = $("#qnty" + i).val();
+          var Price = $("#price" + i).val();
+          var total = qty * Price;
+          // console.log(qty);
+          $("#total" + i).val(total);
+          subtotal = 0;
+          $(".total").each(function () {
+            subtotal += parseInt($(this).val());
+          });
+          $(".subtot").val(subtotal.toFixed(2));
+          var dis = $("#discount").val();
+          var discount = (total * $("#discount").val()) / 100;
+          $("#discount").val(discount.toFixed(2));
+          var gst = (total / 100) * 2.5;
+          $("#grandtotal").val((subtotal - discount + gst).toFixed(2));
+        });  
+      });
+     function total()
+      {
+        total1=0;
+  $('.total').each(function() {
+        total1 += parseInt($(this).val());
+    });
+  $('.subtot').val(total1.toFixed(2));
+  var discount = (total1 * $("#discount").val()) / 100;
+  $("#discount").val(discount.toFixed(2));
+  var gst = (total1 / 100) * 2.5;
+  $('#tax').val(gst.toFixed(2));
+  $('#grandtotal').val((total1+gst-discount).toFixed(2));
+      }
+    </script>
+  </body>
+</html>

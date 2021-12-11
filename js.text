@@ -1,0 +1,52 @@
+JQUERY
+we called which tag is called element selector
+$("")=>if we select element in  jquery we use $
+document=> complete file
+ready()=> it is a method
+anonumus function it means doesnot have name
+h1tag is process on some work  is know as element
+.html is innerhtml in jquery process
+//this keyword  for reference the tag
+//id selector for single element
+// class selector for multiple element and different tags
+//multiple selector
+//first &last element : seudo element
+// odd and even element tr:odd,tr:even
+//class with elements p.a
+//contains
+//attr
+//children methods
+//findmethod
+$("ul.list").find('li').css('color','red');
+children() changes only in direct children
+find() to change all elements
+//add remove functiion
+//first()
+$("ul.list").children('li:first-child').addClass('color');
+$("ul.list").children('li').first().addClass('color');
+this is function chaining we use less funcion because for efficient program
+
+nth-child=eq() in jquery
+$("ul.list").children('li:nth-child(2)').text("nth child by css jquery");
+$("ul.list").children('li').eq(1).text("change by eq");
+eq takes index value
+equilavent to nth child
+/apply css properties
+//height width
+//inner height=element+padding
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Rows Dynamically</title>
+    <link href="D:\assets\css\bootstrap.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <input type="text" id="name" placeholder="Name" />
+    <input type="text" id="lastname" placeholder="Last Name" />
+    <input type="button" class="add" value="Add" />
+
+    <table style="border: 1px solid black">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Last Name</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <script src="D:\assets\js\jquery-3.6.0.min.js"></script>
+    <script src="D:\assets\js\bootstrap.bundle.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".add").click(function () {
+          var name = $("#name").val();
+          var lastname = $("#lastname").val();
+          var markup =
+            "<tr><td>" + name + "</td><td>" + lastname + "</td></tr>";
+          $("table tbody").append(markup);
+        });
+      });
+    </script>
+  </body>
+</html>

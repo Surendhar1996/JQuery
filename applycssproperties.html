@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apply Css properties</title>
+  </head>
+  <body>
+    <h1>SURENDHAR S.J</h1>
+    <div>SJS</div>
+    <script src="/assets/js/jquery-3.6.0.min.js"></script>
+    <script>
+      $("document").ready(function () {
+        //single
+        $("h1").css("font-size", "30px");
+        //multiple
+        $("h1").css({
+         "color": "white",
+          "background-color": "orange",
+          "padding": "10px",
+        });
+        $("div").width('200px').height('150px').css({
+         "color": "red",
+          "background-color": "pink",
+          "padding":"10px",
+          "border":'2px solid red'
+        });
+        //inner height=element+padding
+        console.log('Inner Height :'+$('div').innerHeight());
+        console.log('Inner width :'+$('div').innerWidth());
+         //outer height=element+padding+border
+         console.log('Outer Height :'+$('div').outerHeight());
+        console.log('Outer width :'+$('div').outerWidth());
+      });
+    </script>
+  </body>
+</html>
